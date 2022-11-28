@@ -32,13 +32,24 @@ var arr1 = {"data": [
     }
 ]}
 
+const object1 = {
+	foo: false,
+	a: {
+		b: [
+			{
+				c: false
+			}
+		]
+	}
+};
+
 
 
 console.log(arr1.data[0].ExerciseName);
 
+var index=0;
 
-
-const watchedObject = onChange(arr1.data[0], function (path, value, previousValue, applyData) {
+const watchedObject = onChange(object1, function (path, value, previousValue, applyData) {
 	console.log('Object changed:', ++index);
 	console.log('this:', this);
 	console.log('path:', path);
@@ -47,11 +58,15 @@ const watchedObject = onChange(arr1.data[0], function (path, value, previousValu
 	console.log('applyData:', applyData);
 });
 
+watchedObject;
+
 
 
 setTimeout(function(){
-
-    arr1.data[0].ExerciseName = 'AJADKFAJDFAJDKFAJDF';
-    console.log(arr1.data[0].ExerciseName)
-
-}, 5000)
+    console.log(watchedObject)
+    watchedObject.foo=true;
+    watchedObject.a.b[0].c=true;
+    //console.log(object1.foo);
+    //arr1.data[0].ExerciseName = 'AJADKFAJDFAJDKFAJDF';
+    //console.log(arr1.data[0].ExerciseName)
+}, 1000)
